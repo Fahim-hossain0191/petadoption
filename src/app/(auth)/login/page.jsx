@@ -15,6 +15,7 @@ import { FaGoogle } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 import { Check } from "@gravity-ui/icons";
+import Link from "next/link";
 
 const LoginPage = () => {
   const onSubmit = async (e) => {
@@ -180,7 +181,8 @@ const LoginPage = () => {
             <p className="text-center text-sm text-gray-500 mt-8">
               Don't have an account?
               <span className="text-cyan-600 font-semibold cursor-pointer ml-1 hover:underline">
-                Create Account
+              <Link href={'/signup'}>Create Account</Link>
+                
               </span>
             </p>
           </Card>
