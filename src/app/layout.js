@@ -21,9 +21,9 @@ export default function RootLayout({ children }) {
             className={`${josefin.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar></Navbar>
+        <Navbar></Navbar> 
         {children}
-        <Footer></Footer>
+         <Footer></Footer>
         </body>
     </html>
   );
