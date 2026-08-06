@@ -272,25 +272,13 @@ useEffect(() => {
           </div>
 
           <Link
-            href="/dashboard"
+            href="/dashboardPage"
             className="block px-4 py-3 hover:bg-gray-100"
           >
             Dashboard
           </Link>
 
-          <Link
-            href="/my-requests"
-            className="block px-4 py-3 hover:bg-gray-100"
-          >
-            My Requests
-          </Link>
-
-          <Link
-            href="/add-pet"
-            className="block px-4 py-3 hover:bg-gray-100"
-          >
-            Add Pet
-          </Link>
+    
 
           <button
             onClick={handleSignOut}
