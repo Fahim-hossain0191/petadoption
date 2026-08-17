@@ -212,14 +212,14 @@ useEffect(() => {
           </li>
 
           <li>
-            <Link href="/pets" className="hover:text-[#FFB1A0] transition">
+            <Link href="/allPets" className="hover:text-[#FFB1A0] transition">
               All Pets
             </Link>
           </li>
 
           {user && (
             <>
-              <li>
+              {/* <li>
                 <Link
                   href="/my-requests"
                   className="hover:text-[#FFB1A0] transition"
@@ -235,7 +235,7 @@ useEffect(() => {
                 >
                   Add Pet
                 </Link>
-              </li>
+              </li> */}
             </>
           )}
         </ul>

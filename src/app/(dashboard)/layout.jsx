@@ -22,13 +22,13 @@ export default function DashboardLayout({ children }) {
         </div>
 
         <nav className="flex flex-col p-5 gap-3">
-          <Link
+          {/* <Link
             href="/dashboardPage"
             className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-[#99CBB8]"
           >
             <FaHome />
             Dashboard
-          </Link>
+          </Link> */}
 
           <Link
             href="/myRequests"
