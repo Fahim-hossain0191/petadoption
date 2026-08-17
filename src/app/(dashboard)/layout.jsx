@@ -23,7 +23,7 @@ export default function DashboardLayout({ children }) {
 
         <nav className="flex flex-col p-5 gap-3">
           <Link
-            href="/dashboard"
+            href="/dashboardPage"
             className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-[#99CBB8]"
           >
             <FaHome />
@@ -31,7 +31,7 @@ export default function DashboardLayout({ children }) {
           </Link>
 
           <Link
-            href="/myrequests"
+            href="/myRequests"
             className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-[#99CBB8]"
           >
             <FaClipboardList />
@@ -39,7 +39,7 @@ export default function DashboardLayout({ children }) {
           </Link>
 
           <Link
-            href="/dashboard/add-pet"
+            href="/addPet"
             className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-[#99CBB8]"
           >
             <FaPlusCircle />
@@ -47,7 +47,7 @@ export default function DashboardLayout({ children }) {
           </Link>
 
           <Link
-            href="/dashboard/my-listings"
+            href="/my-listings"
             className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-[#99CBB8]"
           >
             <FaPaw />

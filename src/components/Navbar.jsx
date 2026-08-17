@@ -159,6 +159,7 @@ import {
 } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const Navbar = () => {
   const { data: session } = authClient.useSession();
@@ -182,6 +183,7 @@ useEffect(() => {
 
   const handleSignOut = async () => {
     await authClient.signOut();
+    redirect('/');
   };
 
   return (
@@ -228,7 +230,7 @@ useEffect(() => {
 
               <li>
                 <Link
-                  href="/add-pet"
+                  href="/addPet"
                   className="hover:text-[#FFB1A0] transition"
                 >
                   Add Pet
