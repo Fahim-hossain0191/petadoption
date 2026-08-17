@@ -47,7 +47,7 @@ export default function DashboardLayout({ children }) {
           </Link>
 
           <Link
-            href="/my-listings"
+            href="/myListingPage"
             className="flex items-center gap-3 rounded-xl px-4 py-3 hover:bg-[#99CBB8]"
           >
             <FaPaw />

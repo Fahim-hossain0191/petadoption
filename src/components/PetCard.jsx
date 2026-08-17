@@ -1,15 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@heroui/react";
+
 import {
   LuMapPin,
   LuHeart,
   LuArrowUpRight,
 } from "react-icons/lu";
+
 import { FaVenusMars } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 
@@ -30,13 +32,56 @@ const PetCard = ({ collection }) => {
 
   const user = session?.user;
 
+  const [isAdopted, setIsAdopted] = useState(false);
+  const [checkingStatus, setCheckingStatus] = useState(true);
+
+  // Check whether this pet has an approved adoption request
+  useEffect(() => {
+    const checkAdoptionStatus = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:5000/adoption-requests?petId=${_id}`
+        );
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch adoption status");
+        }
+
+        const requests = await res.json();
+
+        // Check if any request for this pet is approved
+        const approvedRequest = requests.some(
+          (request) => request.status === "approved"
+        );
+
+        setIsAdopted(approvedRequest);
+
+      } catch (error) {
+        console.error("Error checking adoption status:", error);
+      } finally {
+        setCheckingStatus(false);
+      }
+    };
+
+    if (_id) {
+      checkAdoptionStatus();
+    }
+  }, [_id]);
+
   const handleAdopt = () => {
+    // Don't allow adoption if already adopted
+    if (isAdopted) {
+      return;
+    }
+
+    // Not logged in
     if (!user) {
       window.location.href = "/login";
       return;
     }
 
-    window.location.href = `/pets/${_id}`;
+    // Logged in
+    window.location.href = `/allPets/${_id}`;
   };
 
   return (
@@ -60,7 +105,7 @@ const PetCard = ({ collection }) => {
           </div>
         )}
 
-        {/* Image Overlay */}
+        {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
         {/* Species */}
@@ -77,6 +122,15 @@ const PetCard = ({ collection }) => {
         >
           <LuHeart size={20} />
         </button>
+
+        {/* Adopted badge */}
+        {isAdopted && (
+          <div className="absolute bottom-4 right-4">
+            <span className="rounded-full bg-red-500 px-4 py-2 text-sm font-semibold text-white shadow-lg">
+              Adopted
+            </span>
+          </div>
+        )}
 
         {/* Pet Name */}
         <div className="absolute bottom-4 left-5">
@@ -138,7 +192,7 @@ const PetCard = ({ collection }) => {
         {/* Divider */}
         <div className="border-t border-gray-200 my-4" />
 
-        {/* Bottom Section */}
+        {/* Bottom */}
         <div className="flex items-center justify-between gap-3">
 
           {/* Adoption Fee */}
@@ -166,17 +220,25 @@ const PetCard = ({ collection }) => {
               </Button>
             </Link>
 
-            {/* Adopt Now */}
+            {/* Adopt Now / Adopted */}
             <Button
               size="sm"
               onClick={handleAdopt}
-              className="w-full rounded-xl bg-[#FFB1A0] text-white font-semibold hover:bg-[#ff9d89] transition"
+              isDisabled={isAdopted || checkingStatus}
+              className={`w-full rounded-xl font-semibold text-white transition ${
+                isAdopted
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-[#FFB1A0] hover:bg-[#ff9d89]"
+              }`}
             >
-              Adopt Now
+              {checkingStatus
+                ? "Checking..."
+                : isAdopted
+                ? "Adopted"
+                : "Adopt Now"}
             </Button>
 
           </div>
-
         </div>
       </div>
     </div>

@@ -23,7 +23,7 @@ const reasons = [
 
 const WhyAdopt = () => {
   return (
-    <section className="bg-[#FFF0DD] py-20">
+    <section className="bg-[#dba154] py-20">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-14">
           <span className="text-[#649EC4] font-semibold uppercase tracking-wider">
