@@ -3,12 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { LuMapPin, LuShieldCheck, LuSyringe, LuArrowLeft } from "react-icons/lu";
 import PetAdoptionPanel from "@/components/PetAdoptionPanel";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const PetDetailsPage = async ({ params }) => {
   const { id } = await params;
-
+  const token=await auth.api.getToken({
+    headers:await headers()
+  })
+  console.log(token);
   const res = await fetch(`http://localhost:5000/allPetPage/${id}`, {
     cache: "no-store",
+    headers:{
+      authorization:`Bearer ${token}`
+    }
   });
 
   if (!res.ok) {
