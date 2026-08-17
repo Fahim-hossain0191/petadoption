@@ -34,7 +34,7 @@ const PetDetailsPage = async ({ params }) => {
   }
 
   const pet = await res.json();
-
+    console.log(pet);
   return (
     <div className="min-h-screen bg-[#FFF0DD] py-10 px-6">
 
